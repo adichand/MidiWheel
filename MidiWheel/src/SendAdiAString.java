@@ -5,6 +5,9 @@ import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.Scanner;
 
+// no magic numbers
+static int NUM_ALLOWED_ERRORS = 10;
+
 public class SendAdiAString implements Runnable{
 	private String ip = "localhost";
 	private Scanner scanner = new Scanner (System.in);
@@ -37,7 +40,7 @@ public class SendAdiAString implements Runnable{
 	}
 	
 	private void tick() {
-		if (errors >= 10) {
+		if (errors >= NUM_ALLOWED_ERRORS) {
 			unableToCommunicateWithFriend = true;
 		}
 	}
